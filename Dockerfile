@@ -83,6 +83,7 @@ RUN buildDeps=" \
             --with-readline \
             --with-recode \
             --with-zlib \
+            --enable-calendar \
       && make -j"$(nproc)" \
       && make install \
       && { find /usr/local/bin /usr/local/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
@@ -91,7 +92,7 @@ RUN buildDeps=" \
 
 COPY docker-php-* /usr/local/bin/
 
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 RUN set -ex \
   && cd /usr/local/etc \
