@@ -1,0 +1,35 @@
+#
+#--------------------------------------------------------------------------
+# Image Setup
+#--------------------------------------------------------------------------
+#
+# To edit the 'php-fpm' base Image, visit its repository on Github
+#    https://github.com/LaraDock/php-fpm
+#
+# To change its version, see the available Tags on the Docker Hub:
+#    https://hub.docker.com/r/laradock/php-fpm/tags/
+#
+
+# First you need to build local php53 image by going to ./php53 and typing:
+# docker build -t php53 .
+
+FROM redamakhchan/debian-php7:1
+
+MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
+
+#
+#--------------------------------------------------------------------------
+# Final Touch
+#--------------------------------------------------------------------------
+#
+
+ADD ./php-config-citizenshipper.ini /usr/local/etc/php/conf.d
+ADD ./citizenshipper.pool.conf /usr/local/etc/php-fpm.d/
+
+#RUN rm -r /var/lib/apt/lists/*
+
+#RUN usermod -u 1000 www-data
+
+CMD ["/bin/bash"]
+
+EXPOSE 9000
